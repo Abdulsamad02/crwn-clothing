@@ -98,4 +98,43 @@ body {
         padding: 10px 15px; /* Ensure padding is consistent */
       }
   }
-  
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #282c34; /* Dark background for the navbar */
+  padding: 10px 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 50px; /* Adjust logo size */
+  height: auto;
+}
+.nav-links-container {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Space between links */
+}
+
+
+
+.nav-link {
+  color: #ffffff; /* White text color */
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  border-radius: 5px; /* Rounded corners */
+}
+
+
+* { 
+  box-sizing: border-box;
+}
+
