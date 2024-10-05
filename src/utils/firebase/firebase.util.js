@@ -1,5 +1,9 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, 
+  signInWithRedirect, 
+  signInWithPopup, 
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword as firebaseCreateUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -14,20 +18,24 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
     prompt: "select_account"
 });
 
-export const auth = getAuth(firebaseApp); // Pass firebaseApp
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+// Firebase Auth
+export const auth = getAuth(firebaseApp);
+export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
+export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
 // Initialize Firestore
-export const db = getFirestore(firebaseApp); // Pass firebaseApp
+export const db = getFirestore(firebaseApp);
 
 // Create user document from authentication
-export const createUserDocumentFromAuth = async (userAuth) => {
-    const userDocRef = doc(db, 'users', userAuth.uid); // Use userAuth.uid directly
+export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
+    if (!userAuth) return;
+
+    const userDocRef = doc(db, 'users', userAuth.uid);
     const userSnapshot = await getDoc(userDocRef);
 
     // Check if the user document does not exist
@@ -40,13 +48,24 @@ export const createUserDocumentFromAuth = async (userAuth) => {
                 displayName,
                 email,
                 createdAt,
+                ...additionalInformation,
             });
+            console.log('User document created:', { displayName, email });
         } catch (error) {
-            console.log('Error creating the user:', error.message); // Improved error message
+            console.log('Error creating the user:', error.message);
         }
+    } else {
+        console.log('User document already exists:', userSnapshot.data());
     }
 
-    return userDocRef;
+    return userDocRef; // Optionally return userDocRef or user data
+};
+
+// Create user with email and password
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+    if (!email || !password) return;
+
+    return await firebaseCreateUserWithEmailAndPassword(auth, email, password);
 };
 
 
@@ -74,29 +93,9 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 
 
 
-
-
-
-
-//import { initializeApp } from 'firebase/app'
-
-// // importing some methods firebase
-// import { getAuth,
-//      signInWithRedirect,
-//       signInWithPopup,
-//        GoogleAuthProvider,
-//     } from 'firebase/auth'
-
-
-// //  install somw methods  doc is what we need and thr getDoc is to get document while the  setDoc is to set document  firebase firestore
-// import {
-//   getFirestore,
-//   doc,
-//   getDoc,
-//   setDoc
-// } from 'firebase/firestore'
-
-
+// import { initializeApp } from 'firebase/app';
+// import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+// import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
 // const firebaseConfig = {
 //     apiKey: "AIzaSyASqbCP3FjCrj6DWVf6aJsEk_dsSg80VhQ",
@@ -105,47 +104,48 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 //     storageBucket: "crown-clothing-db-cafca.appspot.com",
 //     messagingSenderId: "377487351820",
 //     appId: "1:377487351820:web:a2f6c6f7af5813a097ce29"
-//   };
+// };
 
-//   // Initialize Firebase
-//   const firebaseapp = initializeApp(firebaseConfig);
+// // Initialize Firebase
+// const firebaseApp = initializeApp(firebaseConfig);
 
- 
-//   const provider = new  GoogleAuthProvider();
-//   provider.setCustomParameters({
+// const googleProvider = new GoogleAuthProvider();
+
+// googleProvider.setCustomParameters({
 //     prompt: "select_account"
-//   });
+// });
 
+// export const auth = getAuth(firebaseApp); // Pass firebaseApp
+// export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
+// export const signInWithGoogleRedirect = () => signInWithRedirect(auth,googleProvider);
 
-//   export const auth = getAuth(firebaseApp);
-//   export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+// // Initialize Firestore
+// export const db = getFirestore(firebaseApp); // Pass firebaseApp
 
+// // Create user document from authentication
+// export const createUserDocumentFromAuth = async (userAuth) => {
+//     const userDocRef = doc(db, 'users', userAuth.uid); // Use userAuth.uid directly
+//     const userSnapshot = await getDoc(userDocRef);
 
+//     // Check if the user document does not exist
+//     if (!userSnapshot.exists()) {
+//         const { displayName, email } = userAuth;
+//         const createdAt = new Date();
 
-//   // lets create the databas for firestore 
-
-//   export const db = getFirestore(firebaseApp);
-          
-//   const  createUserDocumentFromAuth = async (userAuth) => {
-//     const userDocRef = doc(db, 'users', userAuth.uid )
-//     const userSnapshot = await getDoc(userDocRef) 
-
-//     if(userSnapshot.exists()){
-//       const {displayName, email} =  userAuth;
-//       const createdAt = new Date();
-
-//       try {
-//       await setDoc(userDocRef, {
-//         displayName,
-//         email,
-//         createdAt,
-//       }) ;
-//       }catch (error) {
-//         console.log('error creating the user' , error.message)
-//       }
-      
+//         try {
+//             await setDoc(userDocRef, {
+//                 displayName,
+//                 email,
+//                 createdAt,
+//             });
+//             console.log('User document created:', {displayName, email});
+//         } catch (error) {
+//             console.log('Error creating the user:', error.message); //  
+//         }
+//     } else {
+//       console.log ('User document already exists:', userSnapshot.data());
 //     }
 
-//      return userDocRef;
+//     return userDocRef;
+// };
 
-//   };

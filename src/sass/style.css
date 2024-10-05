@@ -138,3 +138,117 @@ body {
   box-sizing: border-box;
 }
 
+
+
+
+/* styles.css */
+
+.group {
+  position: relative;
+  margin: 20px 0; /* Spacing between inputs */
+}
+
+.form-input {
+  background: #f9f9f9; /* Light gray background */
+  color: #333; /* Dark text color */
+  padding: 12px 8px; /* Padding inside the input */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  width: 100%; /* Full width */
+  font-size: 16px; /* Font size */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for border color and shadow */
+}
+
+.form-input:focus {
+  outline: none; /* Remove default outline */
+  background: #fff; /* White background on focus */
+  border: 1px solid #007bff; /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Light blue shadow on focus */
+}
+
+.form-input-label {
+  color: #999; /* Light gray label color */
+  font-size: 16px; /* Default font size */
+  position: absolute; /* Position to overlap input */
+  left: 10px; /* Positioning */
+  top: 10px; /* Positioning */
+  transition: 0.2s ease all; /* Smooth transition for label */
+}
+
+.form-input-label.shrink {
+  top: -15px; /* Move label up when input is focused or has value */
+  font-size: 12px; /* Smaller font size */
+  color: #007bff; /* Change color on shrink */
+}
+
+@media (max-width: 600px) {
+  .form-input {
+      font-size: 14px; /* Smaller font size for mobile */
+  }
+
+  .form-input-label {
+      font-size: 14px; /* Smaller label font size for mobile */
+  }
+}
+
+
+/* sign up form container  */
+
+.sign-up-container {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+}
+
+h2{
+  margin: 10px 0;
+}
+
+
+
+  /* button styles  */
+
+
+  /* Button.css */
+
+.button-container {
+    display: inline-block; /* Make sure it fits content */
+    padding: 10px 20px; /* Padding for the button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    color: #fff; /* Text color */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.button-container:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.primary {
+    background-color: #000000; /* Blue background */
+}
+
+.primary:hover {
+    background-color: #ffffff; /* Darker blue on hover */
+    color: #000;
+}
+
+.google-sign-in {
+    background-color: #db4437; /* Google Red */
+}
+
+.google-sign-in:hover {
+    background-color: #c13526; /* Darker Google Red on hover */
+}
+
+.inverted {
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
+    border: 1px solid #007bff; /* Blue border */
+}
+
+.inverted:hover {
+    background-color: #e9ecef; /* Light gray on hover */
+}
