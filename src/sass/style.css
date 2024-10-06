@@ -195,9 +195,13 @@ body {
 /* sign up form container  */
 
 .sign-up-container {
-  display: flex;
-  flex-direction: column;
-  width: 380px;
+  max-width: 400px; /* Limit the width of the form */
+  margin: 0 auto; /* Center the form on the page */
+  padding: 20px; /* Add padding around the container */
+  border: 1px solid #ccc; /* Optional: border for visual separation */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: #fff; /* White background */
 }
 
 h2{
@@ -235,12 +239,19 @@ h2{
     color: #000;
 }
 
-.google-sign-in {
-    background-color: #db4437; /* Google Red */
+.google{
+    background-color: #4285F4; /* Google Red */
+    padding: 10px 20px; /* Padding for the button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    color: #fff; /* Text color */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s ease, transform 0.3s ease; 
 }
 
-.google-sign-in:hover {
-    background-color: #c13526; /* Darker Google Red on hover */
+.google:hover {
+    background-color: #0062ff; /* Darker Google Red on hover */
 }
 
 .inverted {
@@ -251,4 +262,92 @@ h2{
 
 .inverted:hover {
     background-color: #e9ecef; /* Light gray on hover */
+}
+
+
+/* sign in container */
+.sign-in-container {
+  max-width: 400px; /* Limit the width of the form */
+  margin: 0 auto; /* Center the form on the page */
+  padding: 20px; /* Add padding around the container */
+  border: 1px solid #ccc; /* Optional: border for visual separation */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: #fff; /* White background */
+}
+
+h2 {
+  text-align: center; /* Center the heading */
+}
+
+form {
+  display: flex; /* Use flexbox for form layout */
+  flex-direction: column; /* Stack elements vertically */
+}
+
+form > span {
+  margin-bottom: 20px; /* Space below the span */
+  text-align: center; /* Center the span text */
+}
+
+.buttons-container {
+  display: flex; /* Use flexbox for button layout */
+  justify-content: space-between; /* Space between buttons */
+  margin-top: 20px; /* Space above buttons */
+}
+
+.buttons-container button {
+  flex: 1; /* Make buttons take equal space */
+  margin: 0 5px; /* Space between buttons */
+  padding: 10px; /* Add padding for better touchability */
+  border-radius: 5px; /* Match button styles */
+  font-size: 16px; /* Font size */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.buttons-container button:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 500px) {
+  .sign-in-container {
+      padding: 15px; /* Reduce padding on smaller screens */
+  }
+
+  .buttons-container {
+      flex-direction: column; /* Stack buttons vertically */
+  }
+
+  .buttons-container button {
+      margin: 10px 0; /* Space between stacked buttons */
+  }
+}
+
+
+
+
+.auth-page {
+  max-width: 1200px; /* Maximum width for the container */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px; /* Add padding around the container */
+  text-align: center; /* Center text within the container */
+}
+.forms-container {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space between the forms */
+  align-items: flex-start; /* Align items to the top */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+@media (max-width: 600px) {
+  .forms-container {
+      flex-direction: column; /* Stack forms vertically on small screens */
+      align-items: center; /* Center forms */
+  }
+
+  .sign-in-form, .sign-up-form {
+      min-width: auto; /* Remove minimum width */
+      margin: 10px 0; /* Space between stacked forms */
+  }
 }
