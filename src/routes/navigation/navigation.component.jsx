@@ -1,69 +1,87 @@
-
-import {Link,Outlet } from 'react-router-dom';
-import { Fragment } from 'react';
-import {ReactComponent as CrwnLogo} from '../../assets/crown.svg'
-
+import { Link, Outlet } from 'react-router-dom';
+import { Fragment, useContext } from 'react';
+import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
+import { UserContext } from '../../context/user.context';
+import { signOutUser } from '../../utils/firebase/firebase.util'; // Import your sign-out utility function
 
 const Navigation = () => {
-    return (
-        <Fragment>
-          <div className='navigation'>
-              <Link className='logo-container' to='/'> 
-                  <CrwnLogo className='logo'/>
-              </Link>
-              <div className='nav-links-container'>
-                  <Link className='nav-link' to='/shop'>
-                    SHOP
-                  </Link>
-                  <Link className='nav-link' to='/auth'>
-                    SIGN IN 
-                  </Link>
-              </div>
-          </div>
-          <Outlet/>
-        </Fragment>
-    )
-  }
+  const { currentUser, setCurrentUser } = useContext(UserContext);
 
-  export default Navigation;
+  const handleSignOut = async () => {
+    try {
+      await signOutUser(); // Call the sign-out function
+      setCurrentUser(null); // Update context to remove the current user
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
+
+  return (
+    <Fragment>
+      <div className='navigation'>
+        <Link className='logo-container' to='/'> 
+          <CrwnLogo className='logo'/>
+        </Link>
+        <div className='nav-links-container'>
+          <Link className='nav-link' to='/shop'>SHOP</Link>
+          {currentUser ? (
+            <Fragment>
+              <span className='nav-link'>Welcome, {currentUser.displayName}</span>
+              <span className='nav-link' onClick={handleSignOut}>Sign Out</span>
+            </Fragment>
+          ) : (
+            <Link className='nav-link' to='/auth'>SIGN IN</Link>
+          )}
+        </div>
+      </div>
+      <Outlet />
+    </Fragment>
+  );
+}
+
+export default Navigation;
+
+
+
+
+
+
 
 
 
 // import { Link, Outlet } from 'react-router-dom';
+// import { Fragment, useContext } from 'react';
+// import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
+// import { UserContext } from '../../context/user.context';
+
 // const Navigation = () => {
+//   const { currentUser } = useContext(UserContext);
+//   //console.log(currentUser);
+
 //   return (
-//     <div className="navbar">
-//       <h1 className="navbar-title">I am the navigation bar</h1>
-//       <ul className="nav-links">
-//         <li>
-//           <Link to="/">Home</Link>
-//         </li>
-//         <li>
-//           <Link to="/shop">Shop</Link>
-//         </li>
-//         <li className="dropdown">
-//           <span>Services</span>
-//           <div className="dropdown-content">
-//             <Link to="/services/service1">Service 1</Link>
-//             <Link to="/services/service2">Service 2</Link>
-//             <Link to="/services/service3">Service 3</Link>
-//           </div>
-//         </li>
-//         <li className="dropdown">
-//           <span>About Us</span>
-//           <div className="dropdown-content">
-//             <Link to="/about/team">Our Team</Link>
-//             <Link to="/about/careers">Careers</Link>
-//             <Link to="/about/contact">Contact Us</Link>
-//           </div>
-//         </li>
-//         <li>
-//           <Link to="/blog">Blog</Link>
-//         </li>
-//       </ul>
+//     <Fragment>
+//       <div className='navigation'>
+//         <Link className='logo-container' to='/'> 
+//           <CrwnLogo className='logo'/>
+//         </Link>
+//         <div className='nav-links-container'>
+//           <Link className='nav-link' to='/shop'>SHOP</Link>
+//           {currentUser ? (
+//             <span className='nav-link'>Welcome, {currentUser.displayName}</span>
+//           ) : (
+//             <Link className='nav-link' to='/auth'>SIGN IN</Link>
+//           )
+//           {
+//             currentUser ? (
+//               <span className='nav-link'>Sign Out</span>
+
+//             )
+//           }}
+//         </div>
+//       </div>
 //       <Outlet />
-//     </div>
+//     </Fragment>
 //   );
-// };
+// }
 
 // export default Navigation;

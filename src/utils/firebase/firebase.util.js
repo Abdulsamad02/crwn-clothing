@@ -1,6 +1,15 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword, signInWithRedirect, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    signInWithRedirect, 
+    signInWithPopup, 
+    GoogleAuthProvider, 
+    signOut,
+    onAuthStateChanged,
+    createUserWithEmailAndPassword 
+} from 'firebase/auth';
+import { getFirestore, doc, getDoc, setDoc, collection } from 'firebase/firestore';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -31,6 +40,11 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 
 export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
+
+// Sign-out function
+export const signOutUser = async () => {
+    return await signOut(auth);
+};
 
 // Initialize Firestore
 export const db = getFirestore(firebaseApp);
@@ -68,41 +82,34 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
     if (!email || !password) return;
 
-    return await firebaseCreateUserWithEmailAndPassword(auth, email, password);
+    return await createUserWithEmailAndPassword(auth, email, password);
 };
 
+// Example of how to use collection() correctly
+export const getUsersCollection = async () => {
+    const usersCollectionRef = collection(db, 'users'); // Ensure 'users' collection is correct
+    // Further code to fetch data from this collection can go here
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Export onAuthStateChanged listener
+export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
 
 
 
 // import { initializeApp } from 'firebase/app';
-// import { getAuth, 
-//   signInWithEmailAndPassword,  
-//   signInWithRedirect, 
-//   signInWithPopup, 
-//   GoogleAuthProvider,
-//   createUserWithEmailAndPassword as firebaseCreateUserWithEmailAndPassword } from 'firebase/auth';
-// import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+// import { 
+//     getAuth, 
+//     signInWithEmailAndPassword, 
+//     signInWithRedirect, 
+//     signInWithPopup, 
+//     GoogleAuthProvider, 
+//     signOut,
+//     onAuthStateChanged,
+//     createUserWithEmailAndPassword 
+// } from 'firebase/auth';
+// import { getFirestore, doc, getDoc, setDoc, collection } from 'firebase/firestore';
 
+// // Firebase configuration
 // const firebaseConfig = {
 //     apiKey: "AIzaSyASqbCP3FjCrj6DWVf6aJsEk_dsSg80VhQ",
 //     authDomain: "crown-clothing-db-cafca.firebaseapp.com",
@@ -115,21 +122,27 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 // // Initialize Firebase
 // const firebaseApp = initializeApp(firebaseConfig);
 
+// // Initialize Auth
+// export const auth = getAuth(firebaseApp);
 // const googleProvider = new GoogleAuthProvider();
 // googleProvider.setCustomParameters({
 //     prompt: "select_account"
 // });
-// // my personal export
+
+// // Sign-in functions
 // export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 //     if (!email || !password) return;
 
 //     return await signInWithEmailAndPassword(auth, email, password);
 // };
 
-// // Firebase Auth
-// export const auth = getAuth(firebaseApp);
 // export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
 // export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
+
+// // Sign-out function
+// export const signOutUser = async () => {
+//     return await signOut(auth);
+// };
 
 // // Initialize Firestore
 // export const db = getFirestore(firebaseApp);
@@ -141,7 +154,6 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 //     const userDocRef = doc(db, 'users', userAuth.uid);
 //     const userSnapshot = await getDoc(userDocRef);
 
-//     // Check if the user document does not exist
 //     if (!userSnapshot.exists()) {
 //         const { displayName, email } = userAuth;
 //         const createdAt = new Date();
@@ -161,12 +173,20 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 //         console.log('User document already exists:', userSnapshot.data());
 //     }
 
-//     return userDocRef; // Optionally return userDocRef or user data
+//     return userDocRef;
 // };
 
 // // Create user with email and password
 // export const createAuthUserWithEmailAndPassword = async (email, password) => {
 //     if (!email || !password) return;
 
-//     return await firebaseCreateUserWithEmailAndPassword(auth, email, password);
+//     return await createUserWithEmailAndPassword(auth, email, password);
 // };
+
+// // Example of how to use collection() correctly
+// export const getUsersCollection = async () => {
+//     const usersCollectionRef = collection(db, 'users'); // Ensure 'users' collection is correct
+//     // Further code to fetch data from this collection can go here
+// };
+
+// export const onAuthStateChangedListiner = (callback) => onAuthStateChanged(auth, callback); 
