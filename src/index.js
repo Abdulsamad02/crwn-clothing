@@ -4,16 +4,22 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 import App from './App';
-import { UserProvider } from './context/user.context'; // Corrected to UserProvider
+import { UserProvider } from './context/user.context'; //  
 import reportWebVitals from './reportWebVitals';
-
+ import { ProductProvider } from './context/products.context';
+import { CartProvider } from './context/cart.context/cart-context.component';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+   
+    <ProductProvider>
       <UserProvider> {/* Corrected to UserProvider */}
+      <CartProvider>
         <App />
+      </CartProvider>
       </UserProvider> {/* Corrected to UserProvider */}
+      </ProductProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
