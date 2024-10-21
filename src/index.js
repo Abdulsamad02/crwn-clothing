@@ -12,14 +12,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-   
-    <ProductProvider>
-      <UserProvider> {/* Corrected to UserProvider */}
+      <UserProvider> 
       <CartProvider>
+       <ProductProvider>  
         <App />
-      </CartProvider>
-      </UserProvider> {/* Corrected to UserProvider */}
-      </ProductProvider>
+        </ProductProvider>  
+        </CartProvider> 
+      </UserProvider>  
     </BrowserRouter>
   </React.StrictMode>
 );

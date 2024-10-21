@@ -529,7 +529,7 @@ form > span {
   top: 60%; /* Center vertically */
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /* Offset by half its size to truly center */
-  background-color:; /* Red background for notification */
+    /* Red background for notification */
   color: white;
   font-size: 12px;
   font-weight: bold;
@@ -566,12 +566,14 @@ form > span {
   display: flex;
    justify-content: center;
   flex-direction: column;
+  overflow-y: auto;
   padding: 20px;
   border: 1px solid black;
   background-color: white;
   top: 70px;
   right: 40px;
   z-index: 5;
+}
 
   .empty-message {
     font-size: 18px;
@@ -579,13 +581,37 @@ form > span {
   }
 
   .cart-items {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: scroll;
+    flex-grow: 1; /* Allow this section to grow and take available space */
+    overflow-y: auto; /* Enable vertical scrolling */
   }
 
   button {
     margin-top: auto;
   }
-}
+
+  .cart-item-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc; /* Adds a separator between items */
+  }
+  
+  .cart-item-image {
+    width: 50px; /* Set a fixed width */
+    height: 50px; /* Set a fixed height */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    margin-right: 10px; /* Space between image and text */
+  }
+  
+  .item-details {
+    display: flex;
+    flex-direction: column; /* Stack name and price vertically */
+  }
+  
+  .name {
+    font-weight: bold;
+  }
+  
+  .price {
+    color: #555; /* Slightly lighter color for price */
+  }
