@@ -18,12 +18,19 @@ export const addCartItem = (cartItems, productToAdd) => {
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
+// Function to remove items from the cart
+export const removeCartItem = (cartItems, cartItemToRemove) => {
+  return cartItems.filter(cartItem => cartItem.id !== cartItemToRemove.id);
+};
+
 // Create the CartContext
 export const CartContext = createContext({
   isCartOpen: false,
   setIsCartOpen: () => {},
   cartItems: [],
   addItemToCart: () => {},
+  removeItemFromCart: () => {},
+  decrementItemFromCart: () => {},
   cartCount: 0,
 });
 
@@ -33,19 +40,9 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
 
-
-useEffect (() => {
-  const newCartCount =cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0)
-  setCartCount(newCartCount)
-}, [cartItems])
-
-  // Update the item count whenever cartItems change
   useEffect(() => {
-    const count = cartItems.reduce(
-      (total, cartItem) => total + cartItem.quantity,
-      0
-    );
-    setCartCount(count);
+    const newCartCount = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0);
+    setCartCount(newCartCount);
   }, [cartItems]);
 
   // Function to add item to the cart
@@ -53,12 +50,32 @@ useEffect (() => {
     setCartItems(addCartItem(cartItems, product));
   };
 
+  // Function to remove an item completely from the cart
+  const removeItemFromCart = (cartItemToRemove) => {
+    setCartItems(prevCartItems => removeCartItem(prevCartItems, cartItemToRemove));
+  };
+
+  // Function to decrement the quantity of an item
+  const decrementItemFromCart = (cartItemToDecrement) => {
+    setCartItems((prevCartItems) => {
+      const updatedItems = prevCartItems.map(cartItem =>
+        cartItem.id === cartItemToDecrement.id
+          ? { ...cartItem, quantity: Math.max(cartItem.quantity - 1, 0) }
+          : cartItem
+      );
+
+      return updatedItems.filter(cartItem => cartItem.quantity > 0); // Remove items with zero quantity
+    });
+  };
+
   // Context value to be provided to components
   const value = {
     isCartOpen,
     setIsCartOpen,
     cartItems,
+    removeItemFromCart,
     addItemToCart,
+    decrementItemFromCart,
     cartCount,
   };
 
@@ -67,4 +84,4 @@ useEffect (() => {
       {children}
     </CartContext.Provider>
   );
-};
+};// import { createContext, useState, useEffect } from 'react';
