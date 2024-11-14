@@ -23,11 +23,7 @@ const SignUpForm = () => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChangedListener(user => {
-            if (user) {
-                setCurrentUser(user);
-            } else {
-                setCurrentUser(null);
-            }
+            setCurrentUser(user ? user : null);
         });
 
         return () => unsubscribe();
@@ -57,9 +53,10 @@ const SignUpForm = () => {
             const { user } = await createAuthUserWithEmailAndPassword(email, password);
             await createUserDocumentFromAuth(user, { displayName });
             setCurrentUser(user);
-            setFormFields(defaultFormFields);
+            setFormFields(defaultFormFields); // Reset form fields
             alert('User created successfully!');
         } catch (error) {
+            console.error('Error during sign up:', error); // Log error for debugging
             setError(`Error: ${error.message}`);
         } finally {
             setIsLoading(false);
@@ -69,7 +66,7 @@ const SignUpForm = () => {
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormFields({ ...formFields, [name]: value });
-        if (error) setError(null);
+        if (error) setError(null); // Clear error when input changes
     };
 
     return (
