@@ -26,6 +26,7 @@ const CartDropdown = () => {
       <Button onClick={goToCheckOutHandler}>GO TO CHECKOUT</Button>
     </div>
   );
+ 
 };
 
 export default CartDropdown;
