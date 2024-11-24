@@ -1,0 +1,72 @@
+[33mcommit 2e691a11c0fa1a4970aa4a5d8a5ddc2609464f09[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Abdulsamad02 <abdulsamadmustapha321@gmail.com>
+Date:   Sun Nov 24 09:15:56 2024 +0100
+
+    Set up the home page inages to direct to the category items
+
+[33mcommit 364fa66d31761f081c933215ab72e9915730e4de[m
+Merge: 467c147 f1fe8f5
+Author: Abdulsamad02 <abdulsamadmustapha321@gmail.com>
+Date:   Thu Nov 14 19:56:48 2024 +0100
+
+    Resolved shop component t
+
+[33mcommit 467c14742aa928f18f3e54aa925ab897cd9ddc61[m
+Author: Abdulsamad02 <abdulsamadmustapha321@gmail.com>
+Date:   Thu Nov 14 15:11:46 2024 +0100
+
+    updated my shop component
+
+[33mcommit f1fe8f53361c6385a5680e56e01b997b4121cf41[m
+Author: Abdulsamad02 <abdulsamadmustapha321@gmail.com>
+Date:   Wed Oct 23 21:56:26 2024 +0100
+
+    Created checkout page along  with checkout items and checkout cart functionality
+
+[33mcommit ffadd29fd3212820348132be07a16b29767891a9[m
+Author: Abdulsamad02 <abdulsamadmustapha321@gmail.com>
+Date:   Mon Oct 21 06:50:26 2024 +0100
+
+    added in our addToCart feature
+
+[33mcommit 0b702947645f5762688a7f4f176593259a2a4f9b[m
+Author: Abdulsamad02 <abdulsamadmustapha321@gmail.com>
+Date:   Sat Oct 12 21:13:31 2024 +0100
+
+    adding card context and shopping icon as well as cart drop down
+
+[33mcommit 9fe32b1e7919e73e7dedef8ae220bc9116f45f8b[m
+Author: Abdulsamad02 <abdulsamadmustapha321@gmail.com>
+Date:   Thu Oct 10 06:55:48 2024 +0100
+
+    completed onAuthChange, sign in authentication , usercontext to store state
+
+[33mcommit 1fba697ecdfe91727f6dc4606d2d01d9c2d0576d[m
+Author: Abdulsamad02 <abdulsamadmustapha321@gmail.com>
+Date:   Sun Oct 6 17:59:14 2024 +0100
+
+    created an authentication page and a sign up page
+
+[33mcommit f57e924e9c4b9e2b332052d6d59e7258e7f34be0[m
+Author: Abdulsamad02 <abdulsamadmustapha321@gmail.com>
+Date:   Sat Oct 5 17:08:10 2024 +0100
+
+    created the sign-up component, the form-input component, button component
+
+[33mcommit a54c73aa69e10f52549ee7f90461267d7c25b76d[m
+Author: Abdulsamad02 <abdulsamadmustapha321@gmail.com>
+Date:   Tue Oct 1 12:23:32 2024 +0100
+
+    connected firbase and firebase autentication for google and firebase cloud for storing user data
+
+[33mcommit 8a95a51acaaa02e7f8235396cb66b61eac3bda3c[m
+Author: Abdulsamad02 <abdulsamadmustapha321@gmail.com>
+Date:   Tue Sep 24 20:55:56 2024 +0100
+
+    updating our directory page with directory component and category item component
+
+[33mcommit 05aea180c1f692e4960f21dfbca89d3b2b70bdbc[m
+Author: Abdulsamad02 <abdulsamadmustapha321@gmail.com>
+Date:   Sun Sep 22 17:18:13 2024 +0100
+
+    Initialize project using Create React App
