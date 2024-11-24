@@ -14,53 +14,100 @@ body {
     padding: 20px;
   }
   
-  /* Individual category container */
-  .category-container {
-    background-size: cover; /* Cover the entire container */
-    background-position: center; /* Center the background image */
-    height: 250px; /* Set a fixed height */
-    width: 200px; /* Set a fixed width */
-    display: flex; /* Use flexbox for centering */
-    align-items: flex-end; /* Align content at the bottom */
-    justify-content: center; /* Center content horizontally */
-    color: white; /* Text color for readability */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7); /* Text shadow for better contrast */
-    border-radius: 8px; /* Rounded corners */
-    margin: 10px; /* Space between categories */
-    transition: transform 0.2s; /* Smooth scaling on hover */
-  }
-  
-  /* Hover effect */
-  .category-container:hover {
-    transform: scale(1.05); /* Scale up on hover for a subtle effect */
-  }
-  
-  /* Category body container */
-  .category-body-container {
-    background-color: rgba(
-      0,
-      0,
-      0,
-      0.5
-    ); /* Semi-transparent background for text */
-    Padding: 15px; /* Padding around text */
-    margin: 2em;
-    border-radius: 8px; /* Match border radius */
-    width: 100%; /* Full width to fit container */
+  .title {
+    font-size: 2.5rem; /* Title font size */
+    font-weight: bold; /* Bold text */
     text-align: center; /* Center text */
-  }
-  
-  /* Title styling */
-  .category-body-container h2 {
-    font-size: 1.5em; /* Font size for title */
+    margin: 20px 0; /* Vertical margin */
+    color: #333; /* Dark color for contrast */
+    text-transform: uppercase; /* Uppercase letters */
+    letter-spacing: 1px; /* Spacing between letters */
+    background: linear-gradient(90deg, #ff7e5f, #feb47b); /* Gradient background */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Transparent fill for text */
+    padding: 10px; /* Padding around title */
+    border-radius: 5px; /* Rounded corners */
+}
+
+
+
+
+.category-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid layout */
+    gap: 30px; /* Space between grid items */
+    padding: 20px; /* Padding around the container */
+    max-width: 1200px; /* Maximum width for larger screens */
+    margin: 0 auto; /* Center the container */
+    background-color: #f9f9f9; /* Light background for contrast */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.product-card {
+    background-color: #ffffff; /* White background for product cards */
+    border: 1px solid #e0e0e0; /* Light border */
+    border-radius: 12px; /* Rounded corners */
+    overflow: hidden; /* Prevent overflow of content */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effects */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* Slightly lift card on hover */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+.product-card img {
+    width: 100%; /* Responsive image */
+    height: auto; /* Maintain aspect ratio */
+    border-bottom: 1px solid #e0e0e0; /* Divider between image and content */
+}
+
+.product-card .content {
+    padding: 15px; /* Padding inside the card */
+    flex-grow: 1; /* Allow content to grow */
+}
+
+.product-card .content h3 {
+    font-size: 1.5rem; /* Title font size */
     margin: 0; /* Remove default margin */
-  }
-  
-  /* ID styling */
-  .category-body-container h3 {
-    font-size: 1.2em; /* Font size for ID */
-    margin: 5px 0; /* Margin around ID */
-  }
+    color: #333; /* Dark text color */
+}
+
+.product-card .content p {
+    font-size: 1rem; /* Description font size */
+    color: #666; /* Lighter text color for description */
+    margin: 10px 0; /* Margin for description */
+}
+
+.product-card .content .price {
+    font-size: 1.2rem; /* Price font size */
+    color: #27ae60; /* Green color for price */
+    font-weight: bold; /* Bold price text */
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem; /* Smaller font on tablets */
+    }
+
+    .category-container {
+        padding: 10px; /* Less padding on tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.5rem; /* Smaller font on mobile */
+    }
+
+    .category-container {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        padding: 5px; /* Less padding on mobile */
+    }
+}
   
   /* Shop Now button styling */
   .category-body-container p {
@@ -85,13 +132,7 @@ body {
       align-items: center; /* Center align */
     }
   
-    .category-container {
-      width: 90%; /* Full width on smaller screens */
-    }
-    /* .category-body-container p {
-        width: 15em;
-        margin-left: 9%;
-    } */
+    
     .category-body-container p {
         width: 50%; /* Set a reduced width for the button */
         margin: 10px auto; /* Center the button and add vertical spacing */
@@ -794,3 +835,131 @@ form > span {
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust grid for small screens */
   }
 }
+
+.category {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* responsive columns */
+  gap: 16px; /* space between items */
+  padding: 16px; /* padding around the container */
+}
+
+@media (max-width: 600px) {
+  .category{
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* smaller columns for mobile */
+  }
+}
+
+
+ 
+
+.product-card {
+    transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.product-card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Optional: Style for ProductCard component */
+.product-card img {
+    width: 100%; /* Ensure images are responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Match the theme */
+}
+
+.product-card .footer {
+    background-color: #fff; /* Background for footer */
+    padding: 10px; /* Padding inside footer */
+    border-radius: 0 0 8px 8px; /* Match the theme */
+    text-align: center; /* Center text */
+}
+
+ 
+
+ 
+
+.category-body-container {
+    position: absolute; /* Positioning to overlay on the image */
+    bottom: 0; /* Align to the bottom */
+    left: 0; /* Align to the left */
+    right: 0; /* Align to the right */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: white; /* White text color */
+    text-align: center; /* Center the text */
+    padding: 15px; /* Padding around the text */
+}
+
+.category-body-container h2 {
+    font-size: 1.8rem; /* Title font size */
+    margin: 0; /* Remove default margin */
+    font-weight: bold; /* Bold title */
+    line-height: 1.2; /* Line height for readability */
+}
+
+.category-body-container p {
+    font-size: 1rem; /* Subtitle font size */
+    margin: 5px 0 0; /* Margin for spacing */
+    font-weight: 500; /* Medium weight for subtitle */
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    directory-container {
+        height: 250px; /* Slightly smaller height on tablets */
+    }
+
+    .category-body-container h2 {
+        font-size: 1.5rem; /* Smaller title on tablets */
+    }
+
+    .category-body-container p {
+        font-size: 0.9rem; /* Smaller subtitle on tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    directory-container {
+        height: 200px; /* Even smaller height on mobile */
+    }
+
+    .category-body-container h2 {
+        font-size: 1.2rem; /* Smaller title on mobile */
+    }
+
+    .category-body-container p {
+        font-size: 0.8rem; /* Smaller subtitle on mobile */
+    }
+}
+
+
+
+
+
+.categories-container {
+  display: grid; /* Use grid layout for categories */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive columns */
+  gap: 20px; /* Space between items */
+  padding: 20px; /* Padding around the container */
+  max-width: 1200px; /* Maximum width */
+  margin: 0 auto; /* Center the container */
+}
+
+.directory-item-container {
+  position: relative; /* Positioning for the overlay */
+  display: flex; /* Flexbox for alignment */
+  align-items: flex-end; /* Align text to the bottom */
+  justify-content: center; /* Center text horizontally */
+  width: 100%; /* Full width */
+  height: 200px; /* Fixed height */
+  background-size: cover; /* Cover the entire area */
+  background-position: center; /* Center the image */
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Hide overflow */
+  transition: transform 0.3s ease; /* Smooth transitions */
+}
+
+.directory-item-container:hover {
+  transform: scale(1.05); /* Scale effect on hover */
+}
+
+ 

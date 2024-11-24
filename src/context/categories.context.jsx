@@ -12,7 +12,7 @@ export const CategoriesProvider = ({ children }) => {
         const getCategoryMap = async () => {
             try {
                 const categoryMap = await getCategoriesAndDocuments();
-                console.log("Fetched Categories Map:", categoryMap); // Log the fetched categories
+                
                 setCategoriesMap(categoryMap); // Set the fetched categories to state
             } catch (error) {
                 console.error("Error fetching categories:", error); // Log any errors
